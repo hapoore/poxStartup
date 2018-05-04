@@ -140,9 +140,9 @@ def assemble_histogram(path_counts, file_name):
 	fig = plt.figure()
 	ax1 = fig.add_subplot(111)
 
-	ax1.plot(x, ksp_distinct_paths_counts, '.b-', label="8 Shortest Paths")
-	ax1.plot(x, ecmp_64_distinct_paths_counts, '.r-', label="64-way ECMP")
-	ax1.plot(x, ecmp_8_distinct_paths_counts, '.g-', label="8-way ECMP")
+	ax1.plot(x, ksp_distinct_paths_counts, color='b', label="8 Shortest Paths")
+	ax1.plot(x, ecmp_64_distinct_paths_counts, color='r', label="64-way ECMP")
+	ax1.plot(x, ecmp_8_distinct_paths_counts, color='g', label="8-way ECMP")
 	plt.legend(loc="upper left");
 	ax1.set_xlabel("Rank of Link")
 	ax1.set_ylabel("# of Distinct Paths Link is on")
@@ -179,9 +179,9 @@ def main():
 
 #	setLogLevel("info")
 #	simpleTest()
-	n = 245
+	n = 246
 	numHosts = 3*n
-	d = 14
+	d = 11
 	reuse_old_result = True
 	ecmp_paths = {}
 	all_ksp = {}
@@ -191,10 +191,10 @@ def main():
 		networkx.write_adjlist(graph, file_name)
 		graph = networkx.read_adjlist(file_name)
 
-		print "ECMP paths"
+		print "Computing ECMP paths"
 		ecmp_paths = compute_ecmp_paths(graph, n)
-		save_obj(ecmp_paths, "ecmp_paths_%s" % (file_name))
-		print "K shortest paths"
+		save_obj(ecmp_paths, "ecmp_%s" % (file_name))
+		print "Computing K shortest paths"
 		all_ksp = compute_k_shortest_paths(graph, n)
 		save_obj(all_ksp, "ksp_%s" % (file_name))
 	else:

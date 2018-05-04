@@ -26,8 +26,6 @@ import pox.openflow.libopenflow_01 as of
 
 log = core.getLogger()
 
-
-
 class Tutorial (object):
   """
   A Tutorial object is created for each switch that connects.
